@@ -65,19 +65,20 @@ $().ready(function() {
 		errorElement: "span",
 		success: "success",
 
-		/*highlight: function(element, errorClass) {
+		highlight: function(element, errorClass) {
 			$(element).addClass(errorClass).removeClass("success");
 		},
 		success: function(span) {
-			span.addClass("success");
-		},*/
+			span.toggleClass("success");
+		},
 		//提交表单
 		submitHandler: function(form) {
 			alert("提交")
 				//form.submit();
 		},
-		//验证是否有错误信息
-		invalidHandler: function(form, validator) {
+		//验证是否有错误信息,$(form).valid()或者submit会触发该方法
+		//此处验证的是整个表单
+		/*invalidHandler: function(form, validator) {
 			var errors = validator.numberOfInvalids();
 			if (errors) { //0表示false,非0表示true;
 				$("#message").text(validator.numberOfInvalids() + "error");
@@ -86,7 +87,7 @@ $().ready(function() {
 				$("#message").hide();
 			}
 
-		},
+		},*/
 		//errorClass:"error",
 		//errorElement:"lable",
 
@@ -96,10 +97,16 @@ $().ready(function() {
 		//wrapper: "li",
 
 		//打印错误个数
-		/*showErrors: function(errorMap, errorList) {
-			alert("您的表单中共有:" + this.numberOfInvalids() + "错误,请修正后提交!");
+		showErrors: function(errorMap, errorList) {
+			//alert("您的表单中共有:" + this.numberOfInvalids() + "错误,请修正后提交!");
+			var message = $("#message");
+			if (this.numberOfInvalids()) {
+				message.show().text(this.numberOfInvalids() + "error");
+			} else {
+				message.hide();
+			}
 			this.defaultShowErrors();
-		},*/
+		},
 
 	});
 	//自定义验证,addMethod(name,method,message),将name添加到对应表单中的class内;
@@ -119,12 +126,12 @@ $().ready(function() {
 		var tel = /^[0-9]{6}$/;
 		return this.optional(element) || (tel.test(value));
 	}, "请正确填写您的邮政编码");
-	//检验是否通过验证,常结合invalidHandler使用
-	$(".isValid").on("focusout", function() {
+	//检验整个表单是否通过验证,常结合invalidHandler使用,但注意触发方式
+	/*$(".isValid").on("focusout", function() {
 		$(this).parents("form").valid();
 		//$("#registerForm").valid();
 		return false;
-	});
+	});*/
 
 
 })
