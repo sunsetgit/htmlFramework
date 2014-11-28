@@ -18,25 +18,26 @@
 				<!--<div class="errorLable"></div>-->
 				<fieldset>
 					<legend>注册</legend>
+					<div id="message">messages</div>
 					<p>
 						<label for="name">用户名</label>
-						<input class="isName" name="name" id="name" type="text" value="" />
+						<input class="isName isValid" name="name" id="name" type="text" value="" />
 					</p>
 					<p>
 						<label for="psword">用户密码</label>
-						<input name="psword" id="psword" type="password" value=""/>
+						<input name="psword" id="psword" type="password" value="" class="isValid" />
 					</p>
 					<p>
 						<label for="againPassword">再次输入密码</label>
-						<input name="againPassword" id="againPassword" type="password" value="" />
+						<input name="againPassword" id="againPassword" type="password" value="" class="isValid" />
 					</p>
 					<p>
 						<label for="email">email</label>
-						<input name="email" id="email" type="email" value="" />
+						<input name="email" id="email" type="email" value="" class="isValid" />
 					</p>
 					<p>
 						<label for="zipCode">邮编</label>
-						<input name="zipCode" id="youbian" type="text" value="" class="isZipCode"/>
+						<input name="zipCode" id="youbian" type="text" value="" class="isZipCode isValid" />
 					</p>
 					<button type="submit">保存</button>
 					<button type="button">取消</button>
